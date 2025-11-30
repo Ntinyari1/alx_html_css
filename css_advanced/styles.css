@@ -1,272 +1,467 @@
-/*
- * CSS Advanced Project: Holberton Smiling School
- * File: styles.css
- */
-
-/* ====================================================================
- * 0. GLOBAL STYLES & VARIABLES
- * ==================================================================== */
-
-:root {
-    /* Define Custom Properties (Variables) */
-    --color-primary: #FF6565; /* Pink/Red for buttons and highlights */
-    --color-dark: #071629;    /* Dark Navy/Black for footer/membership background */
-    --color-text-light: #FFFFFF;
-    --color-text-dark: #000000;
-    --color-blue-dark: #00004c; /* Deep blue used in the hero gradient */
-    --color-purple: #9833D2;   /* Purple/Pink tone used in the hero gradient */
-    
-    /* Font Families */
-    --font-family-base: 'Source Sans Pro', sans-serif;
-    --font-family-title: 'Spin Cycle OT', sans-serif; /* Use if available, otherwise fallback */
-    
-    /* Standard Spacing (Base 16px) */
-    --spacing-xs: 8px;
-    --spacing-sm: 16px;
-    --spacing-md: 24px;
-    --spacing-lg: 48px;
-    --spacing-xl: 96px;
-}
-
-/* BOX SIZING RESET (Best Practice) */
-*, *::before, *::after {
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* BASE STYLES */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family-base);
-    color: var(--color-text-dark);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
 }
 
-/* Container for max width and center alignment */
 .container {
-    width: 90%;
-    max-width: 1000px; /* Adjust max-width based on Figma measurement */
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* Buttons */
-.button {
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 14px;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 22px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-}
-.button:hover {
-    opacity: 0.9;
-}
-.button-primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+/* Header */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 1.5rem 2rem;
 }
 
-/* ====================================================================
- * 1. HEADER & HERO SECTION
- * (Covers the entire dark background image area)
- * ==================================================================== */
-
-.hero-header {
-    /* Set the dark background color and background image */
-    background: linear-gradient(180deg, rgba(7, 22, 41, 0.9) 0%, rgba(13, 13, 63, 0.9) 100%), 
-                url('./images/background-hero.jpg') no-repeat center center; /* Assuming you'll replace the main background image */
-    background-size: cover;
-    color: var(--color-text-light);
-    /* Calculated height based on Figma (large height to contain hero and pros) */
-    min-height: 850px; 
-    position: relative; /* Needed for absolute positioning of pros list on desktop */
-    padding-bottom: 50px; /* Space above pros block */
-}
-
-/* --- Navigation Bar --- */
-.header-container {
+.header-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-top: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
+    justify-content: space-between;
 }
 
 .logo {
-    width: 150px; /* Adjust based on Figma */
-    height: auto;
-}
-
-/* Mobile Menu Toggle (Hidden by default, shown on small screens) */
-.menu-toggle, .menu-icon {
-    display: none; /* Hide toggle button initially */
-}
-
-/* Navigation Links */
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    gap: var(--spacing-md); /* Space between links */
-}
-
-.main-nav a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-}
-.main-nav a:hover {
-    color: var(--color-primary);
-}
-
-
-/* --- Hero Content (Get schooled block) --- */
-.hero-section {
-    text-align: center;
-    padding-top: var(--spacing-lg);
-    /* Flex alignment to push hero content down if header is tall */
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-size: 1rem;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: opacity 0.3s;
+}
+
+.nav a:hover {
+    opacity: 0.8;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #475569;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero-content {
-    max-width: 500px;
-}
-
-.get-schooled h1 {
-    font-size: 120px; /* Large size based on Figma */
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    line-height: 1.1;
-    text-transform: uppercase;
-}
-
-.tagline {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: var(--spacing-lg);
-}
-
-.tagline span {
-    margin: 0 5px;
-}
-
-/* --- Learn from the Pros Section --- */
-.pros-section {
+    position: relative;
+    z-index: 10;
     text-align: center;
-    padding-top: var(--spacing-xl);
-    padding-bottom: var(--spacing-lg);
+    color: white;
+    padding: 0 1rem;
 }
 
-.pros-section h2 {
-    font-size: 32px;
-    font-weight: 300;
-    margin: 0 0 var(--spacing-lg) 0;
-}
-
-.pros-section h2 span {
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
     font-weight: bold;
 }
 
-.pros-list {
+.hero-features {
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    justify-content: space-around;
-    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
 }
 
-.pro-item {
-    width: 180px; /* Set a fixed width for the profile block */
+.hero-subtitle {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+}
+
+.purple-text {
+    color: #a78bfa;
+}
+
+.white-text {
+    color: white;
+}
+
+/* Button */
+.btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #8b5cf6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #7c3aed;
+}
+
+/* Instructors Section */
+.instructors {
+    padding: 5rem 1rem;
+}
+
+.instructors-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.instructor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-bottom: var(--spacing-md);
 }
 
-.pro-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Makes the image circular */
+.instructor-image {
+    width: 144px;
+    height: 144px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.instructor-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: var(--spacing-sm);
 }
 
-.pro-item h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
+.instructor-title {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
 }
 
-.pro-item p {
-    font-size: 14px;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.7); /* Slightly dimmed subtitle */
-    margin: 5px 0 0 0;
+.instructor-subtitle {
+    font-size: 0.75rem;
+    color: #6b7280;
 }
 
+/* Testimonial Section */
+.testimonial {
+    background-color: #8b5cf6;
+    padding: 4rem 1rem;
+}
 
-/* ====================================================================
- * MEDIA QUERY: MOBILE SPECIFIC LAYOUT (< 768px)
- * ==================================================================== */
+.testimonial-content {
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
 
-@media (max-width: 767px) {
-    
-    /* Header (Mobile Menu) */
-    .header-container {
-        flex-wrap: wrap;
-        justify-content: space-between;
+.testimonial-image {
+    flex-shrink: 0;
+}
+
+.testimonial-image img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-text {
+    color: white;
+}
+
+.testimonial-quote {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.author-name {
+    font-weight: 600;
+}
+
+.author-title {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* Tutorials Section */
+.tutorials {
+    padding: 5rem 1rem;
+    background-color: #f9fafb;
+}
+
+.tutorials h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.tutorial-card {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tutorial-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.tutorial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tutorial-content {
+    padding: 1rem;
+}
+
+.tutorial-content h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.tutorial-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+.tutorial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.author-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ddd6fe;
+}
+
+.tutorial-author span {
+    font-size: 0.875rem;
+    color: #8b5cf6;
+}
+
+.tutorial-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rating {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.star {
+    color: #d1d5db;
+    font-size: 1rem;
+}
+
+.star.filled {
+    color: #8b5cf6;
+}
+
+.duration {
+    font-size: 0.875rem;
+    color: #8b5cf6;
+}
+
+/* Membership Section */
+.membership {
+    padding: 5rem 1rem;
+    background-color: #0f172a;
+    color: white;
+}
+
+.membership h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.benefit {
+    text-align: center;
+}
+
+.benefit-icon {
+    width: 64px;
+    height: 64px;
+    color: #a78bfa;
+    margin: 0 auto 1rem;
+    stroke-width: 1.5;
+}
+
+.benefit h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.benefit p {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+.membership-cta {
+    display: flex;
+    justify-content: center;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 5rem 1rem;
+    background-color: white;
+}
+
+.faq h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+
+.faq-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem 3rem;
+}
+
+.faq-item h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.faq-item p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.8;
+}
+
+/* Footer */
+.footer {
+    background-color: #0f172a;
+    color: white;
+    padding: 3rem 1rem;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer .logo {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: white;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #a78bfa;
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
     }
 
-    /* Show hamburger icon */
-    .menu-icon {
-        display: block;
-        font-size: 30px;
-        order: 1; /* Place hamburger icon first */
-        cursor: pointer;
-    }
-    
-    .logo {
-        order: 2; /* Place logo second */
-        margin-right: auto; /* Push logo away from menu items */
+    .hero-features {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
-    .main-nav {
-        /* Mobile menu state */
-        width: 100%;
-        order: 3;
-        display: none; /* Hidden by default */
+    .testimonial-content {
+        flex-direction: column;
         text-align: center;
-        padding-top: var(--spacing-sm);
-    }
-    
-    .main-nav ul {
-        flex-direction: column;
-        gap: var(--spacing-sm);
     }
 
-    /* Show the menu when the toggle is checked (for CSS-only menu) */
-    .menu-toggle:checked ~ .main-nav {
-        display: block;
-    }
-    
-    /* Hero Content Adjustment */
-    .get-schooled h1 {
-        font-size: 60px; /* Smaller font on mobile */
+    .tutorials-grid {
+        grid-template-columns: 1fr;
     }
 
-    /* Pros List stacking on mobile */
-    .pros-list {
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
     }
-    .pro-item {
-        width: 100%;
-        max-width: 250px;
+
+    .nav {
+        gap: 1rem;
     }
-    
 }
