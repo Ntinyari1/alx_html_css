@@ -1,0 +1,406 @@
+/* ----------------------------------- */
+/* 0. CSS Reset & Variables */
+/* ----------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Required Colors */
+    --color-primary-red: #FF6565; 
+    --color-dark-blue: #071627;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-grey: #696969; 
+    --color-light-grey: #D3D3D3;
+    --color-section-bg: #FFFFFF; 
+    --color-results-bg: #071627; 
+
+
+    /* Typography */
+    /* The 'Spin Cycle OT' font is needed for the logo and specific headings, but requires a font-face declaration 
+       which we'll assume is handled via the included 'images/style.css' or a separate CSS import. 
+       We will keep the primary font for general text. */
+    --font-family-primary: 'Source Sans Pro', sans-serif; 
+    --font-family-secondary: 'Spin Cycle OT', sans-serif; 
+}
+
+body {
+    font-family: var(--font-family-primary);
+    line-height: 1.6;
+    color: var(--color-white); 
+    /* Default body background is white, but the header and results sections override it */
+    background-color: var(--color-section-bg); 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s, opacity 0.3s;
+}
+
+/* ----------------------------------- */
+/* 1. Global / Layout & Reusables */
+/* ----------------------------------- */
+.container {
+    max-width: 1000px; 
+    margin: 0 auto;
+    padding: 0 20px; 
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-black); 
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.button-red {
+    background-color: var(--color-primary-red);
+    color: var(--color-white);
+}
+
+.button:hover, .button:active {
+    opacity: 0.9;
+}
+
+.nav-link:hover, .nav-link:active {
+    color: var(--color-primary-red);
+}
+
+/* Row/Column Helpers */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.col-1-4 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: center;
+}
+
+
+/* ----------------------------------- */
+/* 2. Header & Navigation (Task 1) */
+/* ----------------------------------- */
+.header {
+    /* Set the dark background color */
+    background-color: var(--color-dark-blue); 
+    
+    /* Hero image and overlay */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.4), var(--color-dark-blue)), 
+        url('images/headphones_hero_1.jpg');
+        
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 200px; 
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.logo img {
+    height: 32px;
+    width: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 12px;
+}
+
+.menu-icon {
+    display: none;
+}
+
+/* ----------------------------------- */
+/* 3. Hero Content */
+/* ----------------------------------- */
+.hero-content {
+    text-align: center;
+    padding-top: 150px; 
+}
+
+.hero-title {
+    font-size: 32px; 
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.hero-text {
+    max-width: 650px;
+    margin: 60px auto 0;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-light-grey);
+}
+
+/* ----------------------------------- */
+/* 4. What We Do Section (Task 2) */
+/* ----------------------------------- */
+.what-we-do {
+    color: var(--color-black); 
+    background-color: var(--color-section-bg);
+}
+
+.section-subtitle {
+    /* Reduced margin-bottom to pull the features row closer to the text */
+    margin: 0 auto 40px; 
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-black); 
+}
+
+.features-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Ensures all items align to the top */
+    gap: 30px; /* Increased gap for better spacing */
+    margin-top: 50px;
+}
+
+.feature-item {
+    flex: 1;
+    max-width: 25%;
+    padding: 0 10px;
+}
+/* ... rest of What We Do styles remain the same ... */
+
+/* ----------------------------------- */
+/* 5. Our Results Section (Task 3) - FIXED LAYOUT */
+/* ----------------------------------- */
+.results {
+    background-color: var(--color-results-bg);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.results h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-white);
+    font-family: var(--font-family-secondary); 
+    margin-bottom: 0;
+}
+
+/* ... title styling remains the same ... */
+
+.results .section-subtitle {
+    color: var(--color-white); 
+    margin-bottom: 70px;
+}
+
+.results .row {
+    margin-bottom: 70px;
+    justify-content: space-between; 
+    align-items: flex-start; /* Aligns the fixed size rows */
+}
+
+/* Ensure the column acts as a proper container for the fixed-size item */
+.results .col-1-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 25%;
+    flex: 0 0 25%;
+}
+
+.results .item {
+    position: relative;
+    width: 190px; 
+    height: 190px; 
+    /* Important: We need a fixed structure to center content over the fixed pentagon image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent text spilling outside the item boundary if possible */
+}
+
+.results .item img {
+    /* Use fixed image as background shape */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+}
+
+.results .item h3 {
+    position: relative;
+    z-index: 2; 
+    font-size: 46px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    /* Vertically center text more accurately over the pentagon shape */
+    padding-top: 10px; /* Adjusted to visually center */
+}
+
+.results .item p {
+    position: relative;
+    z-index: 2;
+    font-size: 12px; /* Reduced font size for better fit */
+    font-weight: 300;
+    margin-top: 5px; /* Reduced margin */
+    line-height: 1.2;
+    max-width: 90%; /* Constrain description width */
+    color: var(--color-white);
+}
+
+/* Mobile Layout Fixes for Results */
+@media (max-width: 480px) {
+    /* ... existing mobile styles ... */
+    
+    .results .row {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .results .col-1-4 {
+        max-width: 100%;
+        flex: 1 1 100%;
+        /* Ensures the fixed item is centered on the mobile screen */
+        justify-content: center;
+    }
+}
+
+/* ----------------------------------- */
+/* 6. Mobile Responsiveness (480px or less) */
+/* ----------------------------------- */
+@media (max-width: 480px) {
+    
+    .navbar {
+        justify-content: space-between;
+        padding: 20px;
+        position: relative;
+    }
+    
+    .nav-links {
+        display: none; 
+    }
+
+    .menu-icon {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        width: 25px;
+        height: 20px;
+        padding: 0;
+    }
+
+    .menu-icon .bar {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-white);
+        margin: 4px 0;
+    }
+    
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Hero Content Mobile */
+    .hero-content {
+        padding-top: 100px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-text {
+        font-size: 14px;
+    }
+
+    /* What We Do Mobile Layout */
+    .section {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+
+    .features-row {
+        flex-direction: column; 
+        gap: 40px;
+    }
+    
+    .feature-item {
+        max-width: 100%; 
+    }
+    
+    /* Our Results Mobile Layout */
+    .results {
+        padding: 50px 0;
+    }
+    
+    .results .row {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .results .col-1-4 {
+        /* This ensures the pentagon item is centered on mobile */
+        max-width: 100%;
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
