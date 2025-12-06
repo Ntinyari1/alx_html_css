@@ -1,5 +1,5 @@
 /* ----------------------------------- */
-/* 0. CSS Reset */
+/* 0. CSS Reset & Variables */
 /* ----------------------------------- */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -7,25 +7,23 @@
     padding: 0;
 }
 
-/* Base Styles */
 :root {
     /* Required Colors */
     --color-primary-red: #FF6565; 
     --color-dark-blue: #071627;
     --color-white: #FFFFFF;
-    --color-grey: #696969; /* Used for nav links */
-    --color-light-grey: #D3D3D3; /* Used for subtle borders/text */
+    --color-grey: #696969; 
+    --color-light-grey: #D3D3D3; 
 
     /* Typography */
-    /* Assuming Source Sans Pro is imported or available */
     --font-family-primary: 'Source Sans Pro', sans-serif; 
-    --font-family-secondary: 'Spin Cycle OT', sans-serif; /* For specific titles/logos if needed */
+    --font-family-secondary: 'Spin Cycle OT', sans-serif; 
 }
 
 body {
     font-family: var(--font-family-primary);
     line-height: 1.6;
-    color: var(--color-white); /* Default text color for the hero section */
+    color: var(--color-white); 
 }
 
 a {
@@ -37,11 +35,11 @@ a {
 /* ----------------------------------- */
 /* 1. Global / Layout */
 /* ----------------------------------- */
+/* Max width of the content: 1000px centered in the page */
 .container {
-    /* Max width of the content: 1000px centered in the page */
     max-width: 1000px; 
     margin: 0 auto;
-    padding: 0 20px; /* Padding for small screens */
+    padding: 0 20px; 
 }
 
 /* Reusable Button Styling */
@@ -73,15 +71,15 @@ a {
 }
 
 /* ----------------------------------- */
-/* 2. Header & Navigation */
+/* 2. Header & Navigation (Desktop View) */
 /* ----------------------------------- */
 .header {
-    /* Background Image setup */
+    /* Use the provided image for the background */
     background-image: url('images/headphones_hero_1.jpg');
     background-size: cover;
     background-position: center;
-    background-color: var(--color-dark-blue); /* Fallback */
-    padding-bottom: 200px; /* Extra padding to separate hero content from body content later */
+    background-color: var(--color-dark-blue); 
+    padding-bottom: 200px; 
 }
 
 .navbar {
@@ -96,7 +94,7 @@ a {
     width: auto;
 }
 
-/* Desktop Navigation */
+/* Desktop Navigation Links */
 .nav-links {
     list-style: none;
     display: flex;
@@ -104,17 +102,9 @@ a {
     font-size: 12px;
 }
 
-.nav-link {
-    color: var(--color-white);
-}
-
-/* Mobile Menu Icon (Hidden by default on desktop) */
+/* Mobile Menu Icon (Hidden on Desktop) */
 .menu-icon {
     display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
 }
 
 /* ----------------------------------- */
@@ -122,17 +112,19 @@ a {
 /* ----------------------------------- */
 .hero-content {
     text-align: center;
-    padding-top: 150px; /* Space from navbar */
+    padding-top: 150px; 
 }
 
 .hero-title {
-    font-size: 32px;
+    /* Using the exact style based on visual inspection: Bold/700 weight */
+    font-size: 32px; 
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 25px;
 }
 
 .hero-subtitle {
+    /* Using the exact style based on visual inspection: Semi-bold/600 weight */
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 30px;
@@ -147,34 +139,33 @@ a {
 }
 
 /* ----------------------------------- */
-/* 4. Mobile Responsiveness */
-/* web page must switch to the mobile version when the screen width is 480px or less */
+/* 4. Mobile Responsiveness (480px or less) */
 /* ----------------------------------- */
 @media (max-width: 480px) {
     
     .navbar {
-        /* Mobile Navbar: Logo centered, menu icon visible */
-        justify-content: space-around;
-        padding: 20px 0;
+        /* Mobile Navbar: Links disappear, hamburger and logo are main elements */
+        justify-content: space-between;
+        padding: 20px;
         position: relative;
     }
     
+    /* Hide desktop links on mobile */
     .nav-links {
-        /* Hide desktop links on mobile */
         display: none; 
-        /* Task 8 will implement the show/hide toggle */
     }
 
+    /* Show the hamburger icon on mobile */
     .menu-icon {
-        /* Show the hamburger icon */
         display: block;
-        position: absolute;
-        left: 20px;
-        top: 25px;
+        background: none;
+        border: none;
+        cursor: pointer;
         z-index: 10;
-        /* Simple hamburger bars (optional styling for structure) */
+        /* Styling for the three horizontal bars */
         width: 25px;
         height: 20px;
+        padding: 0;
     }
 
     .menu-icon .bar {
@@ -184,7 +175,15 @@ a {
         background-color: var(--color-white);
         margin: 4px 0;
     }
+    
+    /* Ensure the logo is centered relative to the hamburger menu */
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
+    /* Adjust padding for mobile hero section */
     .hero-content {
         padding-top: 100px;
     }
@@ -195,6 +194,5 @@ a {
 
     .hero-text {
         font-size: 14px;
-        padding: 0 10px;
     }
 }
